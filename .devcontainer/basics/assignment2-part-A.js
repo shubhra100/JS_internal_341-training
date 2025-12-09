@@ -1,48 +1,61 @@
+// 1.
 let a = 5, b = 8;
 console.log("Sum =", a + b);
 
+//2.
 let name = "Shubhra";
 console.log("Hello " + name);
 
+//3.
 let num = 7;
 console.log(num % 2 === 0 ? "Even" : "Odd");
 
+//4.
 let c = 30;
 console.log("Fahrenheit =", (c * 9/5) + 32);
 
+//5.
 let x=9, y=3, z=7;
 console.log("Max =", Math.max(x,y,z));
 
+//6.
 let str = "javascript";
 console.log("Length =", str.length);
 
+//7.
 let flag = true;
 flag = !flag;
 console.log(flag);
 
+//8.
 let s1="Hello", s2="World";
 console.log(s1 + " " + s2);
 
+//9.
 let n = -4;
 console.log(n>0 ? "Positive" : n<0 ? "Negative" : "Zero");
 
+//10.
 var s=10;
 let h=20;
 const m=30;
 console.log(s,h,m);
 
 
+//11.
 let number = 5;
 for(let i=1;i<=10;i++){
     console.log(number + " x " + i + " = " + number*i);
 }
 
 
+//12.
 let sum=0;
 for(let i=1;i<=10;i++) sum+=i;
 console.log("Sum =",sum);
 
 
+//13.
 let d = 3;
 switch(d){
     case 1: console.log("Monday");break;
@@ -56,6 +69,7 @@ switch(d){
 }
 
 
+//14.
 function factorial(n){
     let f=1;
     for(let i=1;i<=n;i++) f*=i;
@@ -64,6 +78,7 @@ function factorial(n){
 console.log(factorial(5));
 
 
+//15.
 function canVote(age){
     return age>=18 ? "Eligible" : "Not Eligible";
 }
