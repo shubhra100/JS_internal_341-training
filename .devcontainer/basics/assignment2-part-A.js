@@ -69,3 +69,5 @@ function canVote(age){
 }
 console.log(canVote(20));
 
+
+
