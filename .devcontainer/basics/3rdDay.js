@@ -1,6 +1,6 @@
+//1.
 function value(x){
     return x*2;
-
 
 let fruits= [2,4,5,6,"apple","mango"]
 }
@@ -9,6 +9,7 @@ console.log(value(fruits));
 
 
 
+//2.
 function fruits(num){
     let fal=["apple","mango","grapes","banana","lichi"];
     for(let i=0; i<=num.length-1 ;i++){
@@ -19,6 +20,8 @@ function fruits(num){
 console.log(fruits("fal"));
 
 
+
+//3.
 function fruits(num){
     let fal=["apple","mango","grapes","banana","lichi"];
     for(let i=0; i<=num.length-1 ;i++){
@@ -28,10 +31,13 @@ function fruits(num){
 }
 console.log(fruits("fal"));
 
+
+
 // Map ....
 let number = [2,4,6,8];
 let doubles = number.map(n => n*2);
 console.log(doubles);
+
 
 
 // filter ..... return new array of elements that satisfy a condition
@@ -40,10 +46,12 @@ let double = num.filter(n => n>20);
 console.log(double)
 
 
+
 //reduce
 let nums = [1,2,3,4,5];
 let total = nums.reduce((acc,val) => acc+val,0);
 console.log(total);
+
 
 
 //object.... store data in key value pair
