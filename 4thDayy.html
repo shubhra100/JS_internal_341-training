@@ -1,10 +1,42 @@
+<!---  (message shows only in inspect -> console and not in browser page)
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My GitHub Page</title>
+    <title>Task 1</title>
 </head>
 <body>
-    <h1>Hello World!!!!!!!!!!!!!!!</h1>
-    
+
+<p id="msg">Hello</p>
+<button onclick="console.log('hellooooo');">Click Me</button>
+
+</body>
+</html>
+-->
+
+
+
+<!-- message shows in browsers page -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 1</title>
+</head>
+
+<body>
+
+    <!-- Existing text (will remain same) -->
+    <p>Hello</p>
+    <p id="msg"></p>
+
+    <button onclick="changeText()">Click Me</button>
+
+    <script>
+        
+        function changeText() {
+            document.getElementById("msg").innerText = "Welcome to JavaScript!";
+        }
+    </script>
+
 </body>
 </html>
