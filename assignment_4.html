@@ -1,3 +1,4 @@
+<!-- comment--
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,183 @@
 <script>
 function changeText() {
     document.getElementById("msg").innerText = "Welcome to JavaScript!";
+}
+</script>
+
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM & Events - Day 4</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .box { border: 2px solid black; padding: 20px; background: lightgray; margin: 10px 0; }
+        .dark { background: black; color: white; }
+    </style>
+</head>
+<body>
+
+<!-- Task 1 -->
+<h3>Task 1: Change Text</h3>
+<p id="text">Hello</p>
+<button onclick="changeText()">Click Me</button>
+
+<!-- Task 2 -->
+<h3>Task 2: Background Color</h3>
+<button onclick="changeColor('red')">Red</button>
+<button onclick="changeColor('blue')">Blue</button>
+<button onclick="changeColor('green')">Green</button>
+
+<!-- Task 3 -->
+<h3>Task 3: Image Switcher</h3>
+<img id="img" src="https://via.placeholder.com/150" width="150">
+<br>
+<button onclick="prevImg()">Previous</button>
+<button onclick="nextImg()">Next</button>
+
+<!-- Task 4 -->
+<h3>Task 4: Show / Hide Paragraph</h3>
+<p id="para">This is a paragraph</p>
+<button onclick="togglePara()">Show / Hide</button>
+
+<!-- Task 5 -->
+<h3>Task 5: Counter App</h3>
+<button onclick="decrease()">-</button>
+<span id="count">0</span>
+<button onclick="increase()">+</button>
+
+<!-- Task 6 -->
+<h3>Task 6: Create Element</h3>
+<button onclick="addBox()">Add Box</button>
+
+<!-- Task 7 -->
+<h3>Task 7: Form Input Reader</h3>
+<input type="text" id="name" placeholder="Enter name">
+<button onclick="showName()">Submit</button>
+<p id="output"></p>
+
+<!-- Task 8 -->
+<h3>Task 8: Todo List</h3>
+<input type="text" id="task">
+<button onclick="addTask()">Add Task</button>
+<ul id="list"></ul>
+
+<!-- Task 9 -->
+<h3>Task 9: Attribute Change</h3>
+<img id="pic" src="https://via.placeholder.com/100">
+<br>
+<button onclick="small()">Small</button>
+<button onclick="large()">Large</button>
+
+<!-- Task 10 -->
+<h3>Task 10: Theme Switcher</h3>
+<button onclick="toggleTheme()">Light / Dark</button>
+
+<!-- Task 11 -->
+<h3>Task 11: Live Clock</h3>
+<p id="clock"></p>
+
+<!-- Task 12 -->
+<h3>Task 12: Random Quote</h3>
+<p id="quote"></p>
+<button onclick="newQuote()">New Quote</button>
+
+<script>
+/* Task 1 */
+function changeText() {
+    document.getElementById("text").innerText = "Welcome to JavaScript!";
+}
+
+/* Task 2 */
+function changeColor(color) {
+    document.body.style.backgroundColor = color;
+}
+
+/* Task 3 */
+let imgs = [
+    "https://via.placeholder.com/150",
+    "https://via.placeholder.com/150/0000FF"
+];
+let i = 0;
+function nextImg() {
+    i = (i + 1) % imgs.length;
+    document.getElementById("img").src = imgs[i];
+}
+function prevImg() {
+    i = (i - 1 + imgs.length) % imgs.length;
+    document.getElementById("img").src = imgs[i];
+}
+
+/* Task 4 */
+function togglePara() {
+    let p = document.getElementById("para");
+    p.style.display = (p.style.display === "none") ? "block" : "none";
+}
+
+/* Task 5 */
+let count = 0;
+function increase() {
+    count++;
+    document.getElementById("count").innerText = count;
+}
+function decrease() {
+    if (count > 0) count--;
+    document.getElementById("count").innerText = count;
+}
+
+/* Task 6 */
+function addBox() {
+    let div = document.createElement("div");
+    div.className = "box";
+    div.innerText = "New Box Created";
+    document.body.appendChild(div);
+}
+
+/* Task 7 */
+function showName() {
+    let name = document.getElementById("name").value;
+    document.getElementById("output").innerText = "Hello " + name;
+}
+
+/* Task 8 */
+function addTask() {
+    let task = document.getElementById("task").value;
+    let li = document.createElement("li");
+    li.innerText = task;
+    document.getElementById("list").appendChild(li);
+}
+
+/* Task 9 */
+function small() {
+    document.getElementById("pic").setAttribute("width", "100");
+}
+function large() {
+    document.getElementById("pic").setAttribute("width", "200");
+}
+
+/* Task 10 */
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+}
+
+/* Task 11 */
+setInterval(() => {
+    document.getElementById("clock").innerText = new Date().toLocaleTimeString();
+}, 1000);
+
+/* Task 12 */
+let quotes = [
+    "Learn JavaScript",
+    "Practice makes perfect",
+    "Code every day",
+    "Never stop learning"
+];
+function newQuote() {
+    let r = Math.floor(Math.random() * quotes.length);
+    document.getElementById("quote").innerText = quotes[r];
 }
 </script>
 
