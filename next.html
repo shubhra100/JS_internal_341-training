@@ -2,15 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registration Page</title>
 </head>
+
 <body>
+
     <h1 id="hd1">This is your Registration page</h1>
+    <p id="user"></p>
+    <p id="pass"></p>
+
     <script>
-        let params=new URLSearchParams(window.location.search);
-        let na=params.get("firstname");
-        document.getElementById("hd1").innerHTML=`welcome!${na}`;
+        // Read URL parameters
+        let params = new URLSearchParams(window.location.search);
+
+        let username = params.get("username");
+        let password = params.get("password");
+
+        // Display values
+        document.getElementById("hd1").innerHTML = "Welcome " + username;
+        document.getElementById("user").innerHTML = "Username: " + username;
+        document.getElementById("pass").innerHTML = "Password: " + password;
     </script>
+
 </body>
 </html>

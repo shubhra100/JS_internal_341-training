@@ -1,153 +1,122 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login & Register Page</title>
+  <title>Demo of online project</title>
 
   <style>
     body {
-      font-family: Arial;
       margin: 0;
+      font-family: Arial;
     }
 
-    .header {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid #000;
-      padding: 10px;
-      font-weight: bold;
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .line {
+      border-top: 2px solid green;
+      margin: 10px 20px;
     }
 
     .navbar {
-      background: #333;
-      padding: 10px;
+      display: flex;
+      gap: 30px;
+      padding: 10px 20px;
     }
 
     .navbar a {
-      color: white;
-      margin-right: 15px;
       text-decoration: none;
+      color: black;
+      font-weight: bold;
     }
 
     .container {
       display: flex;
-      border: 1px solid black;
-      height: 300px;
+      height: 500px;
+      margin-top: 20px;
     }
 
-    .menu {
-      width: 20%;
-      border-right: 1px solid black;
-      padding: 10px;
+    .left {
+      width: 33%;
+      background: #00ffff;
+      padding: 20px;
     }
 
-    .notice {
-      width: 50%;
-      border-right: 1px solid black;
-      padding: 10px;
+    .middle {
+      width: 34%;
+      background: #fde9c9;
+      padding: 20px;
       text-align: center;
     }
 
-    .box {
-      width: 30%;
-      padding: 10px;
+    .right {
+      width: 33%;
+      background: #7fffd4;
+      padding: 20px;
     }
 
-    input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-    }
-
-    button {
-      padding: 8px 15px;
-      margin-right: 5px;
+    /* PERFECT CENTERING */
+    .notice-box {
+      width: 200px;        /* fixed width */
+      margin: 15px auto;   /* horizontal center */
     }
   </style>
-
-  <script>
-    function showRegister() {
-      document.getElementById("loginBox").style.display = "none";
-      document.getElementById("registerBox").style.display = "block";
-    }
-
-    function showLogin() {
-      document.getElementById("registerBox").style.display = "none";
-      document.getElementById("loginBox").style.display = "block";
-    }
-
-    function clearFields() {
-      document.getElementById("userid").value = "";
-      document.getElementById("password").value = "";
-    }
-  </script>
 </head>
 
 <body>
 
-<!-- Header -->
-<div class="header">
-  <div>LOGO</div>
-  <div>HEADING</div>
-  <div>LOGO</div>
-</div>
+<h1>Demo of online project</h1>
 
-<!-- Navbar -->
+<div class="line"></div>
+
 <div class="navbar">
-  <a href="#">Home</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Contact</a>
+  <a href="#">HOME</a>
+  <a href="#">Gallery</a>
+  <a href="#">Menu3</a>
+  <a href="#">Menu4</a>
+  <a href="#">Menu5</a>
+  <a href="#">Menu6</a>
 </div>
 
-<!-- Main Layout -->
+<div class="line"></div>
+
 <div class="container">
 
-  <div class="menu">
-    <b>Menu</b><br><br>
-    Dashboard<br>
-    Profile<br>
-    Settings<br>
-    Help
+  <div class="left">
+    text1<br>text1<br>text1<br>text1<br>
+    text1<br>text1<br>
   </div>
 
-  <div class="notice">
-    <h3>Notice</h3>
-    <p>Important notices will appear here.</p>
+  <div class="middle">
+    <b>Important Notice</b>
+
+    <div class="notice-box">
+      <marquee direction="up"
+               scrollamount="5"
+               height="200"
+               onmouseover="this.stop()"
+               onclick="this.stop()"
+               onmouseout="this.start()">
+
+        Notice 1<br>
+        Notice 2<br>
+        Notice 3<br>
+        Notice 4<br>
+        Notice 5<br>
+        Notice 6<br>
+        Notice 7<br>
+      </marquee>
+    </div>
   </div>
 
-  <div class="box">
-
-    <!-- LOGIN BOX -->
-    <div id="loginBox">
-      <h3>Login</h3>
-
-      <input type="text" id="userid" placeholder="User ID">
-      <input type="password" id="password" placeholder="Password">
-
-      <button>Login</button>
-      <button type="button" onclick="clearFields()">Cancel</button><br><br>
-
-      <button type="button" onclick="showRegister()">New User</button>
-    </div>
-
-    <!-- REGISTER BOX -->
-    <div id="registerBox" style="display:none;">
-      <h3>Register</h3>
-
-      <input placeholder="Username">
-      <input placeholder="Email">
-      <input type="password" placeholder="Password">
-
-      <button>Register</button>
-
-      <p style="margin-top:10px;">
-        Already have an account?
-        <span onclick="showLogin()" style="color:blue;cursor:pointer;">
-          Login
-        </span>
-      </p>
-    </div>
-
+  <div class="right">
+    <h3>Login</h3>
+    User Name <input type="text"><br><br>
+    Password <input type="password"><br><br>
+    <button>Submit</button>
+    <button>Cancel</button><br><br>
+    <a href="register.html">New User ? Signup here</a>
   </div>
 
 </div>
