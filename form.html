@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login & Register Page</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #000;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    .navbar {
+      background: #333;
+      padding: 10px;
+    }
+
+    .navbar a {
+      color: white;
+      margin-right: 15px;
+      text-decoration: none;
+    }
+
+    .container {
+      display: flex;
+      border: 1px solid black;
+      height: 300px;
+    }
+
+    .menu {
+      width: 20%;
+      border-right: 1px solid black;
+      padding: 10px;
+    }
+
+    .notice {
+      width: 50%;
+      border-right: 1px solid black;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .box {
+      width: 30%;
+      padding: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 8px 15px;
+      margin-right: 5px;
+    }
+  </style>
+
+  <script>
+    function showRegister() {
+      document.getElementById("loginBox").style.display = "none";
+      document.getElementById("registerBox").style.display = "block";
+    }
+
+    function showLogin() {
+      document.getElementById("registerBox").style.display = "none";
+      document.getElementById("loginBox").style.display = "block";
+    }
+
+    function clearFields() {
+      document.getElementById("userid").value = "";
+      document.getElementById("password").value = "";
+    }
+  </script>
+</head>
+
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div>LOGO</div>
+  <div>HEADING</div>
+  <div>LOGO</div>
+</div>
+
+<!-- Navbar -->
+<div class="navbar">
+  <a href="#">Home</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Contact</a>
+</div>
+
+<!-- Main Layout -->
+<div class="container">
+
+  <div class="menu">
+    <b>Menu</b><br><br>
+    Dashboard<br>
+    Profile<br>
+    Settings<br>
+    Help
+  </div>
+
+  <div class="notice">
+    <h3>Notice</h3>
+    <p>Important notices will appear here.</p>
+  </div>
+
+  <div class="box">
+
+    <!-- LOGIN BOX -->
+    <div id="loginBox">
+      <h3>Login</h3>
+
+      <input type="text" id="userid" placeholder="User ID">
+      <input type="password" id="password" placeholder="Password">
+
+      <button>Login</button>
+      <button type="button" onclick="clearFields()">Cancel</button><br><br>
+
+      <button type="button" onclick="showRegister()">New User</button>
+    </div>
+
+    <!-- REGISTER BOX -->
+    <div id="registerBox" style="display:none;">
+      <h3>Register</h3>
+
+      <input placeholder="Username">
+      <input placeholder="Email">
+      <input type="password" placeholder="Password">
+
+      <button>Register</button>
+
+      <p style="margin-top:10px;">
+        Already have an account?
+        <span onclick="showLogin()" style="color:blue;cursor:pointer;">
+          Login
+        </span>
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
