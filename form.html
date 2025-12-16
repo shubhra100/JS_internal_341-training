@@ -20,16 +20,24 @@
     }
 
     .navbar {
-      display: flex;
-      gap: 30px;
-      padding: 10px 20px;
-    }
+  display: flex;
+  justify-content: space-evenly;   /* spreads items evenly */
+  align-items: center;
+  padding: 12px 0;
+  margin: 0 20px;
+}
 
-    .navbar a {
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-    }
+.navbar a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: green;
+  text-decoration: underline;
+}
+
 
     .container {
       display: flex;
@@ -57,10 +65,12 @@
     }
 
     /* PERFECT CENTERING */
-    .notice-box {
-      width: 200px;        /* fixed width */
-      margin: 15px auto;   /* horizontal center */
-    }
+    .notice-container {
+  height: 250px;              /* controls vertical centering */
+  display: flex;
+  justify-content: center;    /* horizontal center */
+  align-items: center;        /* vertical center */
+}
   </style>
 </head>
 
@@ -98,7 +108,7 @@
                onmouseover="this.stop()"
                onclick="this.stop()"
                onmouseout="this.start()">
-
+        <center>
         Notice 1<br>
         Notice 2<br>
         Notice 3<br>
@@ -106,6 +116,7 @@
         Notice 5<br>
         Notice 6<br>
         Notice 7<br>
+        </center>
       </marquee>
     </div>
   </div>
