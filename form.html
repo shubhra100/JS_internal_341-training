@@ -7,6 +7,7 @@
     body {
       margin: 0;
       font-family: Arial;
+      background-color:#fde9c9;
     }
 
     h1 {
@@ -25,6 +26,7 @@
   align-items: center;
   padding: 12px 0;
   margin: 0 20px;
+  background:#CD5C5C;
 }
 
 .navbar a {
@@ -47,20 +49,20 @@
 
     .left {
       width: 33%;
-      background: #00ffff;
+      background: #ADD8E6;
       padding: 20px;
     }
 
     .middle {
       width: 34%;
-      background: #fde9c9;
+      background: #808000;
       padding: 20px;
       text-align: center;
     }
 
     .right {
       width: 33%;
-      background: #7fffd4;
+      background:#ADD8E6;
       padding: 20px;
     }
 
@@ -120,15 +122,25 @@
       </marquee>
     </div>
   </div>
+<div class="right">
+  <center>
+  <h3>LOGIN🤞</h3>
 
-  <div class="right">
-    <h3>Login</h3>
-    User Name <input type="text"><br><br>
-    Password <input type="password"><br><br>
-    <button>Submit</button>
-    <button>Cancel</button><br><br>
-    <a href="register.html">New User ? Signup here</a>
-  </div>
+  <form action="next.html" method="get">
+    
+    <label>User Name</label>
+    <input type="text" name="username" required><br><br>
+
+    <label>Password</label>
+    <input type="password" name="password" required><br><br>
+
+    <button type="submit">Submit</button>
+    <button type="reset">Cancel</button><br><br>
+
+    <a href="reg.html">New User ? Signup here</a>
+</center
+  </form>
+</div>
 
 </div>
 
