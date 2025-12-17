@@ -1,0 +1,15 @@
+/workspaces/JS_internal_341-training/HospitalManagementSystem/bin/Debug/net8.0/HospitalManagementSystem
+/workspaces/JS_internal_341-training/HospitalManagementSystem/bin/Debug/net8.0/HospitalManagementSystem.deps.json
+/workspaces/JS_internal_341-training/HospitalManagementSystem/bin/Debug/net8.0/HospitalManagementSystem.runtimeconfig.json
+/workspaces/JS_internal_341-training/HospitalManagementSystem/bin/Debug/net8.0/HospitalManagementSystem.dll
+/workspaces/JS_internal_341-training/HospitalManagementSystem/bin/Debug/net8.0/HospitalManagementSystem.pdb
+/workspaces/JS_internal_341-training/HospitalManagementSystem/obj/Debug/net8.0/HospitalManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/JS_internal_341-training/HospitalManagementSystem/obj/Debug/net8.0/HospitalManagementSystem.AssemblyInfoInputs.cache
+/workspaces/JS_internal_341-training/HospitalManagementSystem/obj/Debug/net8.0/HospitalManagementSystem.AssemblyInfo.cs
+/workspaces/JS_internal_341-training/HospitalManagementSystem/obj/Debug/net8.0/HospitalManagementSystem.csproj.CoreCompileInputs.cache
+/workspaces/JS_internal_341-training/HospitalManagementSystem/obj/Debug/net8.0/HospitalManagementSystem.sourcelink.json
+/workspaces/JS_internal_341-training/HospitalManagementSystem/obj/Debug/net8.0/HospitalManagementSystem.dll
+/workspaces/JS_internal_341-training/HospitalManagementSystem/obj/Debug/net8.0/refint/HospitalManagementSystem.dll
+/workspaces/JS_internal_341-training/HospitalManagementSystem/obj/Debug/net8.0/HospitalManagementSystem.pdb
+/workspaces/JS_internal_341-training/HospitalManagementSystem/obj/Debug/net8.0/HospitalManagementSystem.genruntimeconfig.cache
+/workspaces/JS_internal_341-training/HospitalManagementSystem/obj/Debug/net8.0/ref/HospitalManagementSystem.dll
