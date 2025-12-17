@@ -16,31 +16,18 @@ abstract class Patient
 // ================= DERIVED CLASSES =================
 class OPDPatient : Patient
 {
-    public override double GetRoomChargePerDay()
-    {
-        return 500;
-    }
+    public override double GetRoomChargePerDay() => 500;
 }
 
 class IPDPatient : Patient
 {
-    public override double GetRoomChargePerDay()
-    {
-        return 2000;
-    }
+    public override double GetRoomChargePerDay() => 2000;
 }
 
 class EmergencyPatient : Patient
 {
-    public override double GetRoomChargePerDay()
-    {
-        return 3000;
-    }
-
-    public override double GetEmergencyCharge()
-    {
-        return 2000;
-    }
+    public override double GetRoomChargePerDay() => 3000;
+    public override double GetEmergencyCharge() => 2000;
 }
 
 // ================= DELEGATE =================
@@ -83,36 +70,29 @@ class HospitalSystem
         Console.WriteLine("\n===== PATIENT ADMISSION =====");
 
         Console.Write("Patient ID: ");
-        int id = int.Parse(Console.ReadLine());
+        int patientId = ReadInt();
 
         Console.Write("Patient Name: ");
         string name = Console.ReadLine();
 
         Console.Write("Age: ");
-        int age = int.Parse(Console.ReadLine());
+        int age = ReadInt();
 
         Console.Write("Gender: ");
         string gender = Console.ReadLine();
 
         Console.Write("Days Admitted: ");
-        int days = int.Parse(Console.ReadLine());
+        int days = ReadInt();
 
         Console.WriteLine("\nSelect Patient Type");
         Console.WriteLine("1. OPD");
         Console.WriteLine("2. IPD");
         Console.WriteLine("3. Emergency");
-        Console.Write("Choice: ");
-        int choice = int.Parse(Console.ReadLine());
+        Console.Write("Choice (1/2/3 or opd/ipd/emergency): ");
 
-        Patient patient = choice switch
-        {
-            1 => new OPDPatient(),
-            2 => new IPDPatient(),
-            3 => new EmergencyPatient(),
-            _ => new OPDPatient()
-        };
+        Patient patient = ReadPatientType();
 
-        patient.PatientId = id;
+        patient.PatientId = patientId;
         patient.Name = name;
         patient.Age = age;
         patient.Gender = gender;
@@ -124,31 +104,39 @@ class HospitalSystem
         CalculateAndGenerateBill(patient);
     }
 
+    Patient ReadPatientType()
+    {
+        while (true)
+        {
+            string input = Console.ReadLine().Trim().ToLower();
+
+            if (input == "1" || input == "opd")
+                return new OPDPatient();
+            if (input == "2" || input == "ipd")
+                return new IPDPatient();
+            if (input == "3" || input == "emergency")
+                return new EmergencyPatient();
+
+            Console.Write("Invalid input. Enter again (1/2/3 or opd/ipd/emergency): ");
+        }
+    }
+
     void CalculateAndGenerateBill(Patient patient)
     {
         Console.WriteLine("\n===== BILL CALCULATION =====");
 
         Console.Write("Enter Treatment Charges: ₹");
-        double treatmentCharges = double.Parse(Console.ReadLine());
+        double treatmentCharges = ReadDouble();
 
-        double roomCharges =
-            patient.GetRoomChargePerDay() * patient.DaysAdmitted;
-
+        double roomCharges = patient.GetRoomChargePerDay() * patient.DaysAdmitted;
         double emergencyCharges = patient.GetEmergencyCharge();
 
-        double totalAmount =
-            treatmentCharges + roomCharges + emergencyCharges;
+        double totalAmount = treatmentCharges + roomCharges + emergencyCharges;
 
         BillingStrategy strategy = ApplyHospitalDiscount;
-        double finalAmount =
-            billingService.CalculateFinalBill(totalAmount, strategy);
+        double finalAmount = billingService.CalculateFinalBill(totalAmount, strategy);
 
-        GenerateBill(
-            patient,
-            treatmentCharges,
-            roomCharges,
-            emergencyCharges,
-            finalAmount);
+        GenerateBill(patient, treatmentCharges, roomCharges, emergencyCharges, finalAmount);
     }
 
     double ApplyHospitalDiscount(double amount)
@@ -180,6 +168,29 @@ class HospitalSystem
         notification.Notify("Billing Completed");
         notification.Notify("Accounts Department Notified");
         notification.Notify("Discharge Process Initiated");
+    }
+
+    // ===== SAFE INPUT METHODS =====
+    int ReadInt()
+    {
+        while (true)
+        {
+            if (int.TryParse(Console.ReadLine(), out int value))
+                return value;
+
+            Console.Write("Invalid number. Enter again: ");
+        }
+    }
+
+    double ReadDouble()
+    {
+        while (true)
+        {
+            if (double.TryParse(Console.ReadLine(), out double value))
+                return value;
+
+            Console.Write("Invalid amount. Enter again: ");
+        }
     }
 }
 
