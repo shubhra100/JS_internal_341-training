@@ -2,42 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>User Registration Details</title>
+  <title>User Data</title>
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: burlywood;
+      background-color: #eef6fb;
     }
 
     .container {
       width: 400px;
-      background: white;
-      padding: 20px;
-      margin: 50px auto;
-      border-radius: 5px;
-    }
-
-    h2 {
-      text-align: center;
-    }
-
-    .success {
-      color: green;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    .output {
-      background: #e9ffe9;
-      padding: 10px;
-      border-radius: 5px;
-      font-size: 15px;
-    }
-
-    p {
-      margin: 6px 0;
+      background-color: #ffffff;
+      padding: 25px;
+      margin: 60px auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
   </style>
 </head>
@@ -45,33 +24,24 @@
 <body>
 
 <div class="container">
-  <h2>User Registration Details</h2>
-
-  <div class="success">Registration Successful!</div>
-
-  <div class="output">
-    <p><b>Name:</b> <span id="uname"></span></p>
-    <p><b>Email:</b> <span id="uemail"></span></p>
-    <p><b>Gender:</b> <span id="ugender"></span></p>
-    <p><b>Course:</b> <span id="ucourse"></span></p>
-  </div>
+  <h2 id="welcome"></h2>
+  <p id="name"></p>
+  <p id="email"></p>
+  <p id="password"></p>
 </div>
 
 <script>
-  // Read data from URL parameters
-  const params = new URLSearchParams(window.location.search);
+  // same concept as your next.html example
+  let params = new URLSearchParams(window.location.search);
 
-  document.getElementById("uname").innerText =
-    params.get("name") || "Not Available";
+  let name = params.get("name");
+  let email = params.get("email");
+  let password = params.get("password");
 
-  document.getElementById("uemail").innerText =
-    params.get("email") || "Not Available";
-
-  document.getElementById("ugender").innerText =
-    params.get("gender") || "Not Available";
-
-  document.getElementById("ucourse").innerText =
-    params.get("course") || "Not Available";
+  document.getElementById("welcome").innerText = "Welcome " + name;
+  document.getElementById("name").innerText = "Name: " + name;
+  document.getElementById("email").innerText = "Email: " + email;
+  document.getElementById("password").innerText = "Password: " + password;
 </script>
 
 </body>

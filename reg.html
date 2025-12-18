@@ -2,202 +2,168 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Student Registration Form</title>
-
+  <title>Registration</title>
 
   <style>
-  body {
-  font-family: Arial, sans-serif;
-  background-color: #eef6fb; /* light soothing blue */
-}
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef6fb;
+    }
 
-.container {
-  width: 400px;
-  background-color: #ffffff;
-  padding: 25px;
-  margin: 50px auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
+    .container {
+      width: 400px;
+      background-color: #ffffff;
+      padding: 25px;
+      margin: 50px auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
 
-h2 {
-  text-align: center;
-  color: #2c3e50; /* dark calm blue */
-  margin-bottom: 20px;
-}
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
 
-label {
-  display: block;
-  margin-top: 12px;
-  font-weight: bold;
-  color: #34495e;
-}
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
 
-input[type="text"],
-input[type="email"],
-select {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  border: 1px solid #ccd6dd;
-  border-radius: 4px;
-  background-color: #f9fbfc;
-}
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
 
-input[type="radio"] {
-  margin-right: 5px;
-}
+    .radio-group {
+      margin-top: 5px;
+    }
 
-.terms {
-  margin-top: 15px;
-  color: #34495e;
-}
+    .radio-group input {
+      width: auto;
+      margin-right: 5px;
+    }
 
-button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 18px;
-  border: none;
-  border-radius: 4px;
-  background-color: #6fa8dc; /* soothing blue */
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 15px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-button:hover {
-  background-color: #5a9bd5;
-}
+    .preview {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f4faff;
+      border-radius: 6px;
+      display: none;
+    }
 
-/* Error message */
-#error {
-  margin-top: 15px;
-  color: #c0392b; /* soft red */
-  font-size: 14px;
-}
-
-/* Success message */
-.success {
-  color: #27ae60; /* soothing green */
-  font-weight: bold;
-}
-</style>
-
-
+    .success {
+      color: green;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
 
 <div class="container">
-  <h2>Student Registration</h2>
+  <h2>Registration</h2>
 
-  <form id="regForm">
+  <!-- Original form preserved -->
+  <form id="regForm" action="useData.html" method="get" onsubmit="handleSubmit(event)">
 
-    <!-- Name -->
     <label>Name</label>
-    <input type="text" id="name">
+    <input type="text" name="name" id="name" required>
 
-    <!-- Email -->
     <label>Email</label>
-    <input type="email" id="email">
+    <input type="email" name="email" id="email" required>
 
-    <!-- Gender -->
+    <label>Password</label>
+    <input type="password" name="password" id="password" required>
+
+    <!-- NEW: Gender -->
     <label>Gender</label>
-    <div class="gender">
+    <div class="radio-group">
       <input type="radio" name="gender" value="Male"> Male
       <input type="radio" name="gender" value="Female"> Female
     </div>
 
-    <!-- Course -->
+    <!-- NEW: Course -->
     <label>Course</label>
-    <select id="course">
+    <select id="course" name="course">
       <option value="">-- Select Course --</option>
-      <option>HTML</option>
-      <option>CSS</option>
       <option>JavaScript</option>
       <option>Python</option>
+      <option>Java</option>
+      <option>C++</option>
     </select>
 
-    <!-- Terms -->
-    <div class="terms">
+    <!-- NEW: Terms -->
+    <label>
       <input type="checkbox" id="terms"> I agree to Terms & Conditions
-    </div>
+    </label>
 
-    <!-- Submit -->
     <button type="submit">Register</button>
-
-    <div id="error" class="error"></div>
   </form>
 
-  <!-- Output -->
-  <div id="output" class="output"></div>
+  <!-- Preview box preserved + extended -->
+  <div class="preview" id="previewBox">
+    <h3 class="success">Registration Successful!</h3>
+    <p id="pName"></p>
+    <p id="pEmail"></p>
+    <p id="pGender"></p>
+    <p id="pCourse"></p>
+    <p>Redirecting to next page in 5 seconds...</p>
+  </div>
 </div>
 
-
-
 <script>
-document.getElementById("regForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+  function handleSubmit(event) {
+    event.preventDefault(); // keep original behavior
 
-  let name = document.getElementById("name").value.trim();
-  let email = document.getElementById("email").value.trim();
-  let course = document.getElementById("course").value;
-  let terms = document.getElementById("terms").checked;
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let gender = document.querySelector('input[name="gender"]:checked');
+    let course = document.getElementById("course").value;
+    let terms = document.getElementById("terms").checked;
 
-  let gender = "";
-  let genders = document.getElementsByName("gender");
-  for (let g of genders) {
-    if (g.checked) {
-      gender = g.value;
+    if (!gender) {
+      alert("Please select gender");
+      return;
     }
+
+    if (course === "") {
+      alert("Please select course");
+      return;
+    }
+
+    if (!terms) {
+      alert("Please accept terms & conditions");
+      return;
+    }
+
+    // Show preview
+    document.getElementById("previewBox").style.display = "block";
+    document.getElementById("pName").innerText = "Name: " + name;
+    document.getElementById("pEmail").innerText = "Email: " + email;
+    document.getElementById("pGender").innerText = "Gender: " + gender.value;
+    document.getElementById("pCourse").innerText = "Course: " + course;
+
+    // Auto submit after 5 seconds (unchanged)
+    setTimeout(() => {
+      document.getElementById("regForm").submit();
+    }, 5000);
   }
-
-  let errorDiv = document.getElementById("error");
-  let outputDiv = document.getElementById("output");
-
-  errorDiv.innerHTML = "";
-  outputDiv.innerHTML = "";
-
-  /* SEQUENTIAL VALIDATION */
-  if (name === "") {
-    errorDiv.innerHTML = "Name should not be empty";
-    return;
-  }
-
-  if (email === "" || !email.includes("@")) {
-    errorDiv.innerHTML = "✔ Email should be valid";
-    return;
-  }
-
-  if (gender === "") {
-    errorDiv.innerHTML = "✔ Gender must be selected";
-    return;
-  }
-
-  if (course === "") {
-    errorDiv.innerHTML = "✔ Course must be selected";
-    return;
-  }
-
-  if (!terms) {
-    errorDiv.innerHTML = "✔ Terms checkbox must be checked";
-    return;
-  }
-
-  /* SUCCESS OUTPUT ON SAME PAGE */
-  outputDiv.innerHTML = `
-    <p class="success">Successfully Registered!</p>
-    <p><b>Name:</b> ${name}</p>
-    <p><b>Email:</b> ${email}</p>
-    <p><b>Gender:</b> ${gender}</p>
-    <p><b>Course:</b> ${course}</p>
-  `;
-});
 </script>
-
-
-
-
 
 </body>
 </html>
