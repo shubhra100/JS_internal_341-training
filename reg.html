@@ -1,73 +1,60 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Registration</title>
+  <title>Student Registration Form</title>
 
   <style>
     body {
       font-family: Arial, sans-serif;
       background-color: #eef6fb;
     }
-
     .container {
       width: 400px;
       background-color: #ffffff;
       padding: 25px;
       margin: 50px auto;
       border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     }
-
     h2 {
       text-align: center;
       color: #2c3e50;
     }
-
     label {
       display: block;
-      margin-top: 10px;
+      margin-top: 12px;
       font-weight: bold;
     }
-
-    input, select {
+    input[type="text"],
+    input[type="email"],
+    select {
       width: 100%;
       padding: 8px;
       margin-top: 5px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
     }
-
-    .radio-group {
-      margin-top: 5px;
-    }
-
-    .radio-group input {
-      width: auto;
-      margin-right: 5px;
-    }
-
     button {
       width: 100%;
+      margin-top: 18px;
       padding: 10px;
-      margin-top: 15px;
-      background-color: #3498db;
+      background-color: #6fa8dc;
       color: white;
       border: none;
       border-radius: 4px;
-      cursor: pointer;
     }
-
+    #error {
+      margin-top: 15px;
+      color: #c0392b;
+    }
     .preview {
       margin-top: 20px;
-      padding: 15px;
       background-color: #f4faff;
+      padding: 15px;
       border-radius: 6px;
       display: none;
     }
-
     .success {
-      color: green;
+      color: #27ae60;
       font-weight: bold;
     }
   </style>
@@ -76,93 +63,109 @@
 <body>
 
 <div class="container">
-  <h2>Registration</h2>
+  <h2>Student Registration</h2>
 
-  <!-- Original form preserved -->
-  <form id="regForm" action="useData.html" method="get" onsubmit="handleSubmit(event)">
+  <!-- ACTION KEPT AS REQUIRED -->
+  <form id="regForm" action="useData.html" method="get">
 
     <label>Name</label>
-    <input type="text" name="name" id="name" required>
+    <input type="text" id="name" name="name">
 
     <label>Email</label>
-    <input type="email" name="email" id="email" required>
+    <input type="email" id="email" name="email">
 
-    <label>Password</label>
-    <input type="password" name="password" id="password" required>
-
-    <!-- NEW: Gender -->
     <label>Gender</label>
-    <div class="radio-group">
-      <input type="radio" name="gender" value="Male"> Male
-      <input type="radio" name="gender" value="Female"> Female
-    </div>
+    <input type="radio" name="gender" value="Male"> Male
+    <input type="radio" name="gender" value="Female"> Female
 
-    <!-- NEW: Course -->
     <label>Course</label>
     <select id="course" name="course">
       <option value="">-- Select Course --</option>
+      <option>HTML</option>
+      <option>CSS</option>
       <option>JavaScript</option>
       <option>Python</option>
-      <option>Java</option>
-      <option>C++</option>
     </select>
 
-    <!-- NEW: Terms -->
-    <label>
+    <div style="margin-top:12px;">
       <input type="checkbox" id="terms"> I agree to Terms & Conditions
-    </label>
+    </div>
 
     <button type="submit">Register</button>
+    <div id="error"></div>
   </form>
 
-  <!-- Preview box preserved + extended -->
-  <div class="preview" id="previewBox">
-    <h3 class="success">Registration Successful!</h3>
-    <p id="pName"></p>
-    <p id="pEmail"></p>
-    <p id="pGender"></p>
-    <p id="pCourse"></p>
-    <p>Redirecting to next page in 5 seconds...</p>
-  </div>
+  <!-- PREVIEW OUTPUT -->
+  <div class="preview" id="previewBox"></div>
 </div>
 
 <script>
-  function handleSubmit(event) {
-    event.preventDefault(); // keep original behavior
+document.getElementById("regForm").addEventListener("submit", function(e) {
+  e.preventDefault(); // required by PDF
 
-    let name = document.getElementById("name").value.trim();
-    let email = document.getElementById("email").value.trim();
-    let gender = document.querySelector('input[name="gender"]:checked');
-    let course = document.getElementById("course").value;
-    let terms = document.getElementById("terms").checked;
+  let name = document.getElementById("name").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let course = document.getElementById("course").value;
+  let terms = document.getElementById("terms").checked;
 
-    if (!gender) {
-      alert("Please select gender");
-      return;
+  let gender = "";
+  let radios = document.getElementsByName("gender");
+  for (let r of radios) {
+    if (r.checked) {
+      gender = r.value;
+      break;
     }
-
-    if (course === "") {
-      alert("Please select course");
-      return;
-    }
-
-    if (!terms) {
-      alert("Please accept terms & conditions");
-      return;
-    }
-
-    // Show preview
-    document.getElementById("previewBox").style.display = "block";
-    document.getElementById("pName").innerText = "Name: " + name;
-    document.getElementById("pEmail").innerText = "Email: " + email;
-    document.getElementById("pGender").innerText = "Gender: " + gender.value;
-    document.getElementById("pCourse").innerText = "Course: " + course;
-
-    // Auto submit after 5 seconds (unchanged)
-    setTimeout(() => {
-      document.getElementById("regForm").submit();
-    }, 5000);
   }
+
+  let error = document.getElementById("error");
+  let preview = document.getElementById("previewBox");
+
+  error.innerHTML = "";
+  preview.style.display = "none";
+
+  /* ✅ PDF VALIDATION RULES – STRICT ORDER */
+
+  if (name === "") {
+    error.innerHTML = "✔ Name should not be empty";
+    return;
+  }
+
+  if (email === "" || !email.includes("@")) {
+    error.innerHTML = "✔ Email should be valid";
+    return;
+  }
+
+  if (gender === "") {
+    error.innerHTML = "✔ Gender must be selected";
+    return;
+  }
+
+  if (course === "") {
+    error.innerHTML = "✔ Course must be selected";
+    return;
+  }
+
+  if (!terms) {
+    error.innerHTML = "✔ Terms checkbox must be checked";
+    return;
+  }
+
+  /* ✅ SUCCESS (PDF requirement) */
+  preview.style.display = "block";
+  preview.innerHTML = `
+    <p class="success">Registration Successful!</p>
+    <p><b>Name:</b> ${name}</p>
+    <p><b>Email:</b> ${email}</p>
+    <p><b>Gender:</b> ${gender}</p>
+    <p><b>Course:</b> ${course}</p>
+    <p>Redirecting to next page...</p>
+  `;
+
+  // KEEP ACTION-BASED NAVIGATION
+  setTimeout(() => {
+    document.getElementById("regForm").submit();
+  }, 5000);
+});
 </script>
 
 </body>
